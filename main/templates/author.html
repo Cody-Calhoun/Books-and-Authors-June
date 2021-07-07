@@ -8,7 +8,7 @@
     <title>Many To Many</title>
 </head>
 <body>
-    <form action="" method="post" class="col-md-6">
+    <form action="/authors/create" method="post" class="col-md-6">
         {% csrf_token %}
     <h1>Add Author</h1>
     <div class="form-group">
@@ -25,5 +25,19 @@
     </div>
     <button class="btn btn-primary">Create Author</button>
 </form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    {% for author in authors %}
+    <tr>
+        <td>{{author.id}}</td>
+        <td>{{author.first_name}} {{author.last_name}}</td>
+        <td><a href="#">View</a></td>
+    </tr>
+    {% endfor %}
+</table>
 </body>
 </html>

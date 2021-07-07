@@ -3,13 +3,32 @@ from .models import Book, Author
 
 # Create your views here.
 def books(request):
-    return render(request, 'book.html')
+    context = {
+        'books': Book.objects.all()
+    }
+    return render(request, 'book.html', context)
 
 def create_book(request):
     Book.objects.create(
         title=request.POST['title'],
         description=request.POST['description'])
     return redirect('/books')
+
+def one_book(request, id):
+    context = {
+        'one_book': Book.objects.get(id=id),
+        'authors': Author.objects.all()
+    }
+    return render(request, 'show_book.html', context)
+
+def add_author(request):
+    this_book = Book.objects.get(id=request.POST['book'])
+    this_author = Author.objects.get(id=request.POST['author'])
+
+    # this_book.authors.add(this_author)
+    this_author.books.add(this_book)
+    return redirect(f'/books/{this_book.id}')
+
 
 def create_author(request):
     Author.objects.create(
@@ -19,4 +38,7 @@ def create_author(request):
     return redirect('/authors')
 
 def authors(request):
-    return render(request, 'author.html')
+    context = {
+        'authors': Author.objects.all()
+    }
+    return render(request, 'author.html', context)
