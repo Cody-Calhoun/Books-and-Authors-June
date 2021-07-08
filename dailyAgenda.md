@@ -1,5 +1,5 @@
 # Week 5 Python 🐍
-_July 6, 2021_
+_July 7, 2021_
 
 ### Housekeeping
 * Discussion Questions
@@ -7,13 +7,13 @@ _July 6, 2021_
 * Platform Survey
 * Plan for next week (Belt Exam)
 
-### Many to Many relationships
-* How to create Many to Many Relationships
-* Books and Authors
+### Lecture Recap
+* Many to Many
+* Filter by ID number
 
-### Restful Routing
-* What is Restful Routing
-* Why do we use it?
+### Validations
+* models.Manager
+* create a validator
+* Errors = {}
+* Showing errors on screen
 
-### Books and Authors
-* Walk Through

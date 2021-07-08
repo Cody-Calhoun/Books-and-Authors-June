@@ -29,16 +29,19 @@
                     <th>ID</th>
                     <th>Title</th>
                     <th>Action</th>
+                    <th>Delete</th>
                 </tr>
                 {% for book in books %}
                 <tr>
                     <td>{{book.id}}</td>
                     <td>{{book.title}}</td>
                     <td><a href="/books/{{book.id}}">View</a></td>
+                    <td><a href="/books/{{book.id}}/delete">Delete</a></td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
+        
         </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Book, Author
 
 # Create your views here.
@@ -21,16 +22,28 @@ def one_book(request, id):
     }
     return render(request, 'show_book.html', context)
 
+def delete_book(request, id):
+    book = Book.objects.get(id=id)
+    book.delete()
+    return redirect('/books')
+
 def add_author(request):
     this_book = Book.objects.get(id=request.POST['book'])
     this_author = Author.objects.get(id=request.POST['author'])
 
-    # this_book.authors.add(this_author)
-    this_author.books.add(this_book)
+    this_book.authors.add(this_author)
+    # this_author.books.add(this_book)
     return redirect(f'/books/{this_book.id}')
 
 
 def create_author(request):
+    unicorn = Author.objects.author_validator(request.POST)
+
+    if len(unicorn) > 0:
+        for key, value in unicorn.items():
+            messages.error(request, value)
+        return redirect('/authors')
+    # else
     Author.objects.create(
         first_name=request.POST['first_name'],
         last_name=request.POST['last_name'],
